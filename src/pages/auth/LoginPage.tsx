@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-// import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,8 +17,6 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { api } from "@/lib/api";
-import { useNavigate } from "react-router-dom";
 
 // Login form schema
 const loginFormSchema = z.object({
@@ -44,33 +42,23 @@ export const LoginPage = () => {
 
   const onSubmit = async (values: LoginFormValues) => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
     try {
-      // const response = await api.post("/login", values);
-      // console.log(response);
-
-      setLoading(true);
       const response = await login(values.email, values.password);
-      // toast.success("Logged in successfully");
-      // console.log(response);
+      console.log(response);
 
-      //   if (response?.user) {
-      //     toast.success("Logged in successfully");
-      //   }
-      // navigate("/");
-      // window.location.href = "/";
-      //   // }
+      if (response?.user) {
+        toast.success("Logged in successfully");
+        navigate("/");
+          window.location.href = '/';
+      }
+    
     } catch (error) {
-      //   console.log(error);
-      // // console.log(error);
-        // toast.error("Login failed", {
-        //   description:
-        //     error instanceof Error ? error.message : "Invalid credentials",
-        // });
+      toast.error("Login failed", {
+        description:
+          error instanceof Error ? error.message : "Invalid credentials",
+      });
     } finally {
-      // setLoading(false);
+      setLoading(false);
     }
   };
 
