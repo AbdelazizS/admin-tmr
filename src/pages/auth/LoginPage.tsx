@@ -44,31 +44,33 @@ export const LoginPage = () => {
 
   const onSubmit = async (values: LoginFormValues) => {
     setLoading(true);
-    console.log(values);
-
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
     try {
       // const response = await api.post("/login", values);
       // console.log(response);
 
+      setLoading(true);
       const response = await login(values.email, values.password);
-      toast.success("Logged in successfully");
+      // toast.success("Logged in successfully");
       // console.log(response);
 
       //   if (response?.user) {
       //     toast.success("Logged in successfully");
       //   }
-      navigate("/");
-      window.location.href = "/";
+      // navigate("/");
+      // window.location.href = "/";
       //   // }
     } catch (error) {
       //   console.log(error);
       // // console.log(error);
-      //   toast.error("Login failed", {
-      //     description:
-      //       error instanceof Error ? error.message : "Invalid credentials",
-      //   });
+        // toast.error("Login failed", {
+        //   description:
+        //     error instanceof Error ? error.message : "Invalid credentials",
+        // });
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 

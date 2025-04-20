@@ -28,27 +28,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     // Mock API call delay & fake auth
+    console.log(password);
+
     try {
       setTimeout(() => {
         if (email === "admin@example.com" && password === "SecurePass123!") {
+          //  toast.success("Logged in successfully");
           setUser(FAKE_USER);
           localStorage.setItem("token", FAKE_TOKEN);
           localStorage.setItem("user", JSON.stringify(FAKE_USER));
+          toast.success("Logged in successfully");
         } else {
-          throw new Error("Invalid credentials");
+          toast.error("Invalid email or password");
         }
       }, 1500);
-    //   const response = await api.post("/login", { email, password });
+      //   const response = await api.post("/login", { email, password });
 
-    //   if (response.data?.token) {
-    //     // Secure storage of auth data
-    //     localStorage.setItem("token", response.data.token);
-    //     localStorage.setItem("user", JSON.stringify(response.data.user));
-    //     setUser(response.data.user);
+      //   if (response.data?.token) {
+      //     // Secure storage of auth data
+      //     localStorage.setItem("token", response.data.token);
+      //     localStorage.setItem("user", JSON.stringify(response.data.user));
+      //     setUser(response.data.user);
 
-    //     // Return the complete response for component handling
-    //     return response.data;
-    //   }
+      //     // Return the complete response for component handling
+      //     return response.data;
+      //   }
       //    else {
       //     throw new Error("Invalid response format");
       //   }
