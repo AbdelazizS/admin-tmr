@@ -44,7 +44,6 @@ export const LoginPage = () => {
     setLoading(true);
     try {
       const response = await login(values.email, values.password);
-      console.log(response);
 
       if (response?.user) {
         toast.success("Logged in successfully");
@@ -53,6 +52,7 @@ export const LoginPage = () => {
       }
     
     } catch (error) {
+      
       toast.error("Login failed", {
         description:
           error instanceof Error ? error.message : "Invalid credentials",

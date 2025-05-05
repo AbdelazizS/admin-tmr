@@ -442,7 +442,7 @@ export const PropertyNewPage = () => {
               />
 
               {/* Video Tour */}
-              <FormField
+             {/* <FormField
                 control={form.control}
                 name="video_tour"
                 render={({ field }) => (
@@ -457,7 +457,7 @@ export const PropertyNewPage = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */} 
             </div>
 
             {/* Description */}
